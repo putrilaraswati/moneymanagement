@@ -1,0 +1,4 @@
+document.querySelectorAll('[data-year]').forEach(el=>el.textContent=new Date().getFullYear());
+const total=document.querySelector('[data-total]'), business=document.querySelector('[data-business]'), personal=document.querySelector('[data-personal]'), rate=document.querySelector('#rate'), totalDisplay=document.querySelector('[data-total-display]');
+function calc(){if(!total||!business||!personal||!rate)return;const t=Math.max(0,Number(total.value)||0),r=Math.min(100,Math.max(0,Number(rate.value)||0));const p=Math.round(t*r/100),b=t-p;business.textContent='Rp '+b.toLocaleString('id-ID');personal.textContent='Rp '+p.toLocaleString('id-ID');if(totalDisplay)totalDisplay.textContent='Rp '+t.toLocaleString('id-ID');document.querySelector('[data-rate]').textContent=r+'%';}
+[total,rate].forEach(x=>x&&x.addEventListener('input',calc));calc();
